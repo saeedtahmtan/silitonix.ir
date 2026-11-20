@@ -9,7 +9,7 @@
 	<title>Privacy Policy | Silitonix</title>
 	<meta
 		name="description"
-		content="How silitonix.ir handles data, cookies and advertising, and the choices you have."
+		content="What silitonix.ir does and does not collect, and how to reach us."
 	/>
 </svelte:head>
 
@@ -45,54 +45,8 @@
 	<section class="flex flex-col gap-2">
 		<h2 class="text-xl font-semibold">Cookies</h2>
 		<p class="text-neutral-600">
-			A cookie is a small text file a website can store in your browser. This site does not set
-			cookies of its own. Cookies may be set by the advertising service described below, which is
-			operated by Google and its partners.
-		</p>
-	</section>
-
-	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">Advertising</h2>
-		<p class="text-neutral-600">
-			We show ads through Google AdSense to keep the site free. Google, as a third-party vendor,
-			uses cookies to serve ads on this site, including the DoubleClick cookie, which lets it and
-			its partners serve ads based on your visits to this and other websites.
-		</p>
-		<p class="text-neutral-600">
-			If you are in a region that requires it, you will be asked for consent before personalised
-			ads are shown, and you can change or withdraw that choice at any time.
-		</p>
-		<p class="text-neutral-600">You can control or opt out of personalised advertising here:</p>
-		<ul class="list-disc pl-5 text-neutral-600">
-			<li>
-				<a class="underline" href="https://adssettings.google.com" rel="noopener noreferrer">
-					Google Ads Settings
-				</a>
-				— opt out of personalised Google ads
-			</li>
-			<li>
-				<a class="underline" href="https://www.aboutads.info/choices/" rel="noopener noreferrer">
-					aboutads.info
-				</a>
-				and
-				<a class="underline" href="https://www.youronlinechoices.eu" rel="noopener noreferrer">
-					Your Online Choices
-				</a>
-				— opt out from participating vendors
-			</li>
-			<li>
-				<a
-					class="underline"
-					href="https://policies.google.com/technologies/partner-sites"
-					rel="noopener noreferrer"
-				>
-					How Google uses information from sites that use its services
-				</a>
-			</li>
-		</ul>
-		<p class="text-neutral-600">
-			Opting out does not remove ads; it makes them less relevant to you. Ad blockers also
-			prevent these cookies from being set.
+			This site sets no cookies and loads no advertising or analytics scripts. Your visit is not
+			tracked between pages or across sites.
 		</p>
 	</section>
 
@@ -120,8 +74,6 @@
 			Depending on where you live, you may have the right to ask what personal data is held about
 			you, to have it corrected or deleted, or to object to certain processing. We hold no
 			personal data about visitors, so in practice there is nothing for us to export or erase.
-			For data held by Google as an advertising provider, use the links above or contact Google
-			directly.
 		</p>
 		<p class="text-neutral-600">
 			If you believe your data has been handled incorrectly, you can complain to your local data

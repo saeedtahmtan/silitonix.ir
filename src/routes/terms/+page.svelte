@@ -65,17 +65,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">5. Advertising</h2>
-		<p class="text-neutral-600">
-			Parts of the site may show ads provided by third parties such as Google. We do not control
-			ad content and are not responsible for the products or sites advertised. See our
-			<a class="underline" href="/privacy">Privacy Policy</a> for how advertising cookies
-			work and how to opt out.
-		</p>
-	</section>
-
-	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">6. No warranty</h2>
+		<h2 class="text-xl font-semibold">5. No warranty</h2>
 		<p class="text-neutral-600">
 			The site is provided “as is” and “as available”, without warranties of any kind, whether
 			express or implied. We do not promise that the site will be available without interruption,
@@ -84,7 +74,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">7. Limitation of liability</h2>
+		<h2 class="text-xl font-semibold">6. Limitation of liability</h2>
 		<p class="text-neutral-600">
 			To the fullest extent permitted by law, we are not liable for any indirect, incidental or
 			consequential loss, or for any loss of data, income or profit, arising from your use of or
@@ -94,7 +84,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">8. Links to other sites</h2>
+		<h2 class="text-xl font-semibold">7. Links to other sites</h2>
 		<p class="text-neutral-600">
 			We are not responsible for the content, policies or practices of websites we do not operate,
 			including those we link to and those that advertise here.
@@ -102,7 +92,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">9. Changes</h2>
+		<h2 class="text-xl font-semibold">8. Changes</h2>
 		<p class="text-neutral-600">
 			We may update these terms as the site changes. The date above shows the current version, and
 			continuing to use the site after a change means you accept the new terms.
@@ -110,7 +100,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">10. If part of these terms is unenforceable</h2>
+		<h2 class="text-xl font-semibold">9. If part of these terms is unenforceable</h2>
 		<p class="text-neutral-600">
 			If any provision is found to be invalid, the rest stays in force and the invalid provision is
 			read in the way that comes closest to its intent.
@@ -118,7 +108,7 @@
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">11. Contact</h2>
+		<h2 class="text-xl font-semibold">10. Contact</h2>
 		<p class="text-neutral-600">
 			Questions about these terms? Email
 			<a class="underline" href="mailto:silitonix@gmail.com">silitonix@gmail.com</a>.
