@@ -17,8 +17,6 @@
 </svelte:head>
 
 <div class="relative min-h-svh bg-white">
-	<ShaderBackground />
-
 	<header
 		dir="ltr"
 		class="fixed inset-x-0 top-0 z-20 flex h-14 items-center justify-between bg-white/60 px-6 backdrop-blur-sm"
@@ -44,8 +42,10 @@
 
 	<section
 		dir="ltr"
-		class="relative flex h-svh flex-col items-center justify-center px-6 text-center"
+		class="relative flex h-svh flex-col items-center justify-center overflow-hidden px-6 text-center"
 	>
+		<ShaderBackground />
+
 		<h1 class="pl-[0.3em] text-5xl font-bold tracking-[0.3em] sm:text-7xl">SILITONIX</h1>
 		<p class="mt-4 text-sm text-neutral-700">
 			Small, focused products for the web. Built to be fast, private and simple.

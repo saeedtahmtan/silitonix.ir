@@ -250,4 +250,4 @@ void main() {
 	});
 </script>
 
-<canvas bind:this={canvas} class="pointer-events-none fixed inset-0 h-full w-full" aria-hidden="true"></canvas>
+<canvas bind:this={canvas} class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
