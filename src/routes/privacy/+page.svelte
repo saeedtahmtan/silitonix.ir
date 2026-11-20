@@ -45,8 +45,10 @@
 	<section class="flex flex-col gap-2">
 		<h2 class="text-xl font-semibold">Cookies</h2>
 		<p class="text-neutral-600">
-			This site sets no cookies and loads no advertising or analytics scripts. Your visit is not
-			tracked between pages or across sites.
+			This site does not show ads and does not run our own analytics. It does load Google's
+			AdSense script, which we use to prove ownership of the domain in our AdSense account; no ad
+			units are placed on this site. Loading that script is a request to Google's servers, and
+			Google may set or read cookies as part of it. If you block it, nothing on the site breaks.
 		</p>
 	</section>
 
