@@ -4,61 +4,75 @@
 </script>
 
 <svelte:head>
-	<title>حریم خصوصی | Silitonix</title>
-	<meta name="description" content="سیاست حریم خصوصی سایت Silitonix." />
+	<title>Privacy Policy | Silitonix</title>
+	<meta
+		name="description"
+		content="How Silitonix handles data, cookies and advertising on silitonix.ir."
+	/>
 </svelte:head>
 
-<div class="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 p-6">
+<div class="mx-auto flex min-h-screen max-w-2xl flex-col gap-6 p-6">
 	<header class="flex items-center justify-between gap-4">
-		<h1 class="text-2xl font-bold">حریم خصوصی</h1>
-		<Button variant="ghost" size="sm" href="/">بازگشت</Button>
+		<h1 class="text-2xl font-bold">Privacy Policy</h1>
+		<Button variant="ghost" size="sm" href="/">Back</Button>
 	</header>
 	<Separator />
 
-	<p class="text-muted-foreground">آخرین به‌روزرسانی: نوامبر ۲۰۲۶</p>
+	<p class="text-sm text-neutral-500">Last updated: November 2026</p>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">داده‌هایی که جمع می‌کنیم</h2>
-		<p class="text-muted-foreground">
-			این سایت سروری برای ثبت اطلاعات ندارد و حساب کاربری نمی‌سازد. فرم‌های
-			نمایشی هیچ داده‌ای ارسال نمی‌کنند.
+		<h2 class="text-xl font-semibold">Data we collect</h2>
+		<p class="text-neutral-600">
+			This site has no accounts and no backend. It does not collect, store or send personal
+			information. Anything you type into a demo form stays in your browser and is not
+			submitted anywhere.
 		</p>
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">کوکی‌ها و تبلیغات</h2>
-		<p class="text-muted-foreground">
-			این سایت از Google AdSense استفاده می‌کند. Google و شرکای آن ممکن است از
-			کوکی‌ها برای نمایش تبلیغات بر اساس بازدیدهای قبلی شما از این سایت یا
-			سایت‌های دیگر استفاده کنند. می‌توانید تبلیغات شخصی‌سازی‌شده را از طریق
+		<h2 class="text-xl font-semibold">Cookies and advertising</h2>
+		<p class="text-neutral-600">
+			This site uses Google AdSense to show ads. Google and its partners may use cookies to
+			serve ads based on your previous visits to this or other websites. You can opt out of
+			personalised advertising in
 			<a class="underline" href="https://adssettings.google.com" rel="noopener noreferrer">
-				تنظیمات تبلیغات Google
-			</a>
-			غیرفعال کنید. برای جزئیات بیشتر
-			<a class="underline" href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer">
-				سیاست حریم خصوصی شرکای Google
-			</a>
-			را ببینید.
+				Google Ads Settings </a
+			>. See also
+			<a
+				class="underline"
+				href="https://policies.google.com/technologies/partner-sites"
+				rel="noopener noreferrer"
+			>
+				how Google uses information from partner sites </a
+			>.
 		</p>
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">میزبانی</h2>
-		<p class="text-muted-foreground">
-			فایل‌های این سایت به‌صورت ایستا میزبانی می‌شوند. میزبان ممکن است مانند هر
-			وب‌سروری نشانی IP و اطلاعات فنی درخواست‌ها را برای امنیت و آمار نگه دارد.
+		<h2 class="text-xl font-semibold">Hosting</h2>
+		<p class="text-neutral-600">
+			The site is served as static files from GitHub Pages. Like any web host, it may keep
+			technical request logs (such as IP address and user agent) for security and
+			reliability.
 		</p>
 	</section>
 
 	<section class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold">تغییرات</h2>
-		<p class="text-muted-foreground">
-			این سیاست ممکن است به‌روزرسانی شود. نسخهٔ جاری همیشه در همین صفحه در
-			دسترس است.
+		<h2 class="text-xl font-semibold">External links</h2>
+		<p class="text-neutral-600">
+			Products linked from this site, such as Dingotype, run on their own pages and store
+			data in your browser only. This policy covers silitonix.ir.
 		</p>
 	</section>
 
-	<footer class="mt-auto text-sm text-muted-foreground">
-		<Button variant="link" size="sm" href="/terms">شرایط استفاده</Button>
+	<section class="flex flex-col gap-2">
+		<h2 class="text-xl font-semibold">Changes</h2>
+		<p class="text-neutral-600">
+			This policy may be updated. The current version is always available on this page.
+		</p>
+	</section>
+
+	<footer class="mt-auto text-sm text-neutral-500">
+		<a class="underline" href="/terms.html">Terms of Service</a>
 	</footer>
 </div>
