@@ -89,6 +89,7 @@ const float COLOUR_SPEED = 0.15;
 const float FLOW_SPEED   = 0.03;
 const float BAND_WIDTH   = 1.0;
 const float BAND_PERIOD  = 20.0;
+const float SATURATION   = 0.35;
 
 const float STEPS  = 200.;
 const float CUTOFF = 0.;
@@ -151,6 +152,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
                 + iTime * COLOUR_SPEED;
 
         vec3 bandCol = palette(c);
+        bandCol = mix(vec3(dot(bandCol, vec3(0.299, 0.587, 0.114))), bandCol, SATURATION);
         bandCol *= 0.7 + (fragCoord.y/iResolution.y * 0.3);
         bandCol += (rand(fragCoord.xy) - 0.5) * GRAIN;
 
