@@ -12,6 +12,8 @@ precision highp float;
 
 uniform vec3 iResolution;
 uniform float iTime;
+uniform vec2 iMouse;
+uniform vec4 iAvoid; // logo keep-out box: centre.xy, half size.zw (canvas px)
 out vec4 outColor;
 
 float rand(vec2 co){
@@ -84,20 +86,28 @@ float snoise(vec3 v)
 
 const vec3  BACKGROUND   = vec3(1.0);
 const float GRAIN        = 0.05;
-const bool  SHOW_GRID    = true;
 const float COLOUR_SPEED = 0.15;
 const float FLOW_SPEED   = 0.03;
 const float BAND_WIDTH   = 1.0;
 const float BAND_PERIOD  = 20.0;
-const float SATURATION   = 0.45; // 1 = full chroma, 0 = grey
-const float PASTEL       = 0.5;  // how far each colour is mixed toward white
+const float PASTEL_SAT   = 0.28; // 0 = grey, 1 = full chroma
+const float PASTEL_VAL   = 0.97; // 0 = black, 1 = white
+const float POINTER_PULL = 0.25; // smooth push, stays below the fold threshold
+const float AVOID_PULL   = 0.18; // the logo pulls the field like a second pointer
 
 const float STEPS  = 200.;
 const float CUTOFF = 0.;
 const vec2  OFFSET = vec2(0.1,0.1);
 
+vec3 hsv2rgb(vec3 c){
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+// pastel: any hue, low saturation, high value
 vec3 palette(float x){
-    return 0.5 + 0.5 * cos(6.28318530718 * (x + vec3(0.0, 0.33, 0.67)));
+    return hsv2rgb(vec3(fract(x), PASTEL_SAT, PASTEL_VAL));
 }
 
 float getNoise(vec2 uv, float t){
@@ -124,6 +134,24 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     float curveFactor = pow(distance(fragCoord.xy, 0.5*iResolution.xy)*5./iResolution.x,4.);
     vec2 curveDirection = normalize(0.5*iResolution.xy-fragCoord.xy);
     vec2 curvedUV = (fragCoord.xy - curveFactor*curveDirection)/iResolution.x;
+
+    // pull the field toward the cursor; falls off with distance
+    vec2 mouseUV = iMouse / iResolution.x;
+    vec2 toMouse = mouseUV - curvedUV;
+    float mouseDist = length(toMouse);
+    // displacement is the vector itself (not normalized): smooth at the cursor, so no pinching or knots
+    curvedUV += toMouse * (POINTER_PULL / (1.0 + 60.0 * mouseDist * mouseDist));
+
+    // the logo pulls the field the same way the cursor does, so lines bend into it instead of just stopping
+    vec2 avoidCentre = iAvoid.xy / iResolution.x;
+    vec2 avoidHalf = max(iAvoid.zw / iResolution.x, vec2(0.0));
+    vec2 toAvoid = avoidCentre - curvedUV;
+    float avoidRange = length(toAvoid);
+    curvedUV += toAvoid * (AVOID_PULL / (1.0 + 50.0 * avoidRange * avoidRange));
+
+    // but the glyph itself stays clear
+    vec2 avoidQ = abs(curvedUV - avoidCentre) - avoidHalf;
+    float avoidDist = length(max(avoidQ, vec2(0.0))) + min(max(avoidQ.x, avoidQ.y), 0.0);
 
     float t  = iTime * 0.01;
     float tf = iTime * FLOW_SPEED;
@@ -153,18 +181,13 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
                 + iTime * COLOUR_SPEED;
 
         vec3 bandCol = palette(c);
-        bandCol = mix(vec3(dot(bandCol, vec3(0.299, 0.587, 0.114))), bandCol, SATURATION);
-        bandCol = mix(vec3(1.0), bandCol, PASTEL);
-        bandCol *= 0.7 + (fragCoord.y/iResolution.y * 0.3);
+        bandCol *= 0.92 + (fragCoord.y/iResolution.y * 0.08);
         bandCol += (rand(fragCoord.xy) - 0.5) * GRAIN;
 
         col = mix(col, bandCol, v);
     }
 
-    if(SHOW_GRID){
-        if(mod(curvedUV.x,0.1)<0.001) col += vec3(.3,.3,.3);
-        if(mod(curvedUV.y+iResolution.y/iResolution.x*0.035,0.1)<0.001) col += vec3(.3,.3,.3);
-    }
+    col = mix(col, vec3(1.0), 1.0 - smoothstep(0.0, 0.012, avoidDist));
 
     fragColor = vec4(col,1.0);
 }
@@ -205,6 +228,29 @@ void main() {
 
 		const resolution = gl.getUniformLocation(program, 'iResolution');
 		const time = gl.getUniformLocation(program, 'iTime');
+		const mouse = gl.getUniformLocation(program, 'iMouse');
+		const avoid = gl.getUniformLocation(program, 'iAvoid');
+		const avoidElement = document.querySelector('[data-shader-avoid]');
+		// off-screen until the element is measured
+		gl.uniform4f(avoid, -1e4, -1e4, 0, 0);
+
+		// off-screen until the pointer enters, in device pixels with y up
+		const target = { x: -1e4, y: -1e4 };
+		const current = { x: -1e4, y: -1e4 };
+
+		const onPointerMove = (event: PointerEvent) => {
+			const rect = canvas!.getBoundingClientRect();
+			const scale = canvas!.width / rect.width;
+			target.x = (event.clientX - rect.left) * scale;
+			target.y = (rect.height - (event.clientY - rect.top)) * scale;
+		};
+		const onPointerLeave = () => {
+			target.x = -1e4;
+			target.y = -1e4;
+		};
+
+		window.addEventListener('pointermove', onPointerMove);
+		document.addEventListener('pointerleave', onPointerLeave);
 
 		const resize = () => {
 			const dpr = Math.min(window.devicePixelRatio, 1.5);
@@ -221,7 +267,25 @@ void main() {
 		let frame = 0;
 
 		const draw = () => {
+			current.x += (target.x - current.x) * 0.08;
+			current.y += (target.y - current.y) * 0.08;
 			gl.uniform1f(time, (performance.now() - start) / 1000);
+			gl.uniform2f(mouse, current.x, current.y);
+
+			if (avoidElement) {
+				const canvasRect = canvas!.getBoundingClientRect();
+				const avoidRect = avoidElement.getBoundingClientRect();
+				const scale = canvas!.width / canvasRect.width;
+				const pad = 10 * scale;
+				gl.uniform4f(
+					avoid,
+					(avoidRect.left + avoidRect.width / 2 - canvasRect.left) * scale,
+					(canvasRect.height - (avoidRect.top + avoidRect.height / 2 - canvasRect.top)) * scale,
+					(avoidRect.width / 2) * scale + pad,
+					(avoidRect.height / 2) * scale + pad
+				);
+			}
+
 			gl.drawArrays(gl.TRIANGLES, 0, 3);
 		};
 
@@ -246,6 +310,8 @@ void main() {
 			cancelAnimationFrame(frame);
 			document.removeEventListener('visibilitychange', onVisibility);
 			window.removeEventListener('resize', resize);
+			window.removeEventListener('pointermove', onPointerMove);
+			document.removeEventListener('pointerleave', onPointerLeave);
 		};
 	});
 </script>
